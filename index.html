@@ -1,135 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Water via Ads</title>
+<title>Free Water Bottle Ad System</title>
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
+  text-align: center;
   background: #f5f5f5;
 }
 
-header {
+.bottle {
+  width: 200px;
+  height: 400px;
+  background: white;
+  border: 3px solid #0077b6;
+  border-radius: 20px;
+  margin: 30px auto;
+  position: relative;
+}
+
+.cap {
+  width: 80px;
+  height: 40px;
   background: #0077b6;
-  color: white;
-  text-align: center;
-  padding: 50px;
-}
-
-section {
-  max-width: 900px;
   margin: auto;
-  padding: 30px;
+  border-radius: 10px 10px 0 0;
 }
 
-h2 {
+.title {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  font-weight: bold;
   color: #0077b6;
 }
 
-.card {
-  background: #eaeaea;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-}
-
-input {
-  padding: 10px;
-}
-
-.bottle-container {
-  position: relative;
-  width: 220px;
-  margin-top: 20px;
-}
-
-.bottle-container img.bottle {
-  width: 100%;
-  display: block;
-}
-
-#adPreview {
+.ad-slot {
+  width: 140px;
+  height: 80px;
+  border: 2px dashed #aaa;
   position: absolute;
-  top: 38%;
-  left: 18%;
-  width: 64%;
-  display: none;
-  border-radius: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
 }
-</style>
 
+#slot1 { top: 80px; }
+#slot2 { top: 180px; }
+#slot3 { top: 280px; }
+
+.ad-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Free Water via Advertisements</h1>
-  <p>Clean drinking water funded through smart advertising</p>
-</header>
+<h1>Free Water Bottle Advertising</h1>
 
-<section>
-  <h2>The Problem</h2>
-  <p>Access to clean drinking water is limited in public areas, forcing people to buy bottled water, increasing plastic waste and cost.</p>
-</section>
+<input type="file" id="upload" accept="image/*">
 
-<section>
-  <h2>Our Solution</h2>
-  <p>Provide free water through public stations funded by advertisements printed on reusable bottles.</p>
-</section>
+<div class="cap"></div>
 
-<section>
-  <h2>Advertise on Bottles (CLIENT FEATURE)</h2>
-  <p>Upload your advertisement and preview it on the bottle.</p>
+<div class="bottle">
+  <div class="title">FREE WATER</div>
 
-  <input type="file" id="upload" accept="image/*"><br><br>
-
-  <p>Recommended Size: <b>500 x 300 px</b></p>
-  <p id="info"></p>
-
-  <!-- Bottle Preview -->
-  <div class="bottle-container">
-    <img class="bottle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Plastic_water_bottle.png/512px-Plastic_water_bottle.png">
-
-    <img id="adPreview">
-  </div>
-
-  <p id="sizeDisplay"></p>
-</section>
-
-<section>
-  <h2>Impact</h2>
-  <div class="card">Reduce plastic waste</div>
-  <div class="card">Save money</div>
-  <div class="card">Improve public health</div>
-</section>
+  <div class="ad-slot" id="slot1"></div>
+  <div class="ad-slot" id="slot2"></div>
+  <div class="ad-slot" id="slot3"></div>
+</div>
 
 <script>
+let currentSlot = 1;
+
 document.getElementById("upload").addEventListener("change", function(event) {
   const file = event.target.files[0];
   if (!file) return;
 
-  const url = URL.createObjectURL(file);
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(file);
 
-  // Show on bottle
-  const preview = document.getElementById("adPreview");
-  preview.src = url;
-  preview.style.display = "block";
+  const slot = document.getElementById("slot" + currentSlot);
+  slot.innerHTML = "";
+  slot.appendChild(img);
 
-  // Calculate size
-  const img = new Image();
-  img.onload = function() {
-    document.getElementById("info").innerText =
-      "Uploaded Image: " + img.width + " x " + img.height + " px";
-
-    const percent = Math.min((img.width * img.height) / (500 * 300) * 100, 100).toFixed(1);
-
-    document.getElementById("sizeDisplay").innerText =
-      "Ad occupies approx " + percent + "% of ideal print area";
-  };
-  img.src = url;
+  currentSlot++;
+  if (currentSlot > 3) currentSlot = 1;
 });
 </script>
 
