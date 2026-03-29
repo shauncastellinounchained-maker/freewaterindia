@@ -1,32 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Water via Ads</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+header {
+  background: #0077b6;
+  color: white;
+  text-align: center;
+  padding: 50px;
+}
+
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+}
+
+h2 {
+  color: #0077b6;
+}
+
+.card {
+  background: #eaeaea;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+input {
+  padding: 10px;
+}
+
+.bottle-container {
+  position: relative;
+  width: 220px;
+  margin-top: 20px;
+}
+
+.bottle-container img.bottle {
+  width: 100%;
+  display: block;
+}
+
+#adPreview {
+  position: absolute;
+  top: 38%;
+  left: 18%;
+  width: 64%;
+  display: none;
+  border-radius: 6px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>Free Water via Advertisements</h1>
+  <p>Clean drinking water funded through smart advertising</p>
+</header>
+
 <section>
-  <h2>Advertise on Water Bottles</h2>
-  <p>Upload your ad and see how it appears on our bottle.</p>
+  <h2>The Problem</h2>
+  <p>Access to clean drinking water is limited in public areas, forcing people to buy bottled water, increasing plastic waste and cost.</p>
+</section>
+
+<section>
+  <h2>Our Solution</h2>
+  <p>Provide free water through public stations funded by advertisements printed on reusable bottles.</p>
+</section>
+
+<section>
+  <h2>Advertise on Bottles (CLIENT FEATURE)</h2>
+  <p>Upload your advertisement and preview it on the bottle.</p>
 
   <input type="file" id="upload" accept="image/*"><br><br>
 
-  <p>Recommended Ad Size: <b>500 x 300 px</b></p>
+  <p>Recommended Size: <b>500 x 300 px</b></p>
   <p id="info"></p>
 
-  <div style="position:relative; width:200px; margin-top:20px;">
-    
-    <!-- Bottle Image -->
-    <img src="https://i.imgur.com/2DhmtJ4.png" style="width:100%;">
+  <!-- Bottle Preview -->
+  <div class="bottle-container">
+    <img class="bottle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Plastic_water_bottle.png/512px-Plastic_water_bottle.png">
 
-    <!-- Ad overlay -->
-    <img id="adPreview" style="
-      position:absolute;
-      top:35%;
-      left:15%;
-      width:70%;
-      height:auto;
-      opacity:0.9;
-      display:none;
-      border-radius:5px;
-    ">
+    <img id="adPreview">
   </div>
 
-  <br>
   <p id="sizeDisplay"></p>
+</section>
+
+<section>
+  <h2>Impact</h2>
+  <div class="card">Reduce plastic waste</div>
+  <div class="card">Save money</div>
+  <div class="card">Improve public health</div>
 </section>
 
 <script>
@@ -34,29 +111,27 @@ document.getElementById("upload").addEventListener("change", function(event) {
   const file = event.target.files[0];
   if (!file) return;
 
-  const img = new Image();
-  img.onload = function() {
-
-    // Show dimensions
-    document.getElementById("info").innerText =
-      "Uploaded Image Size: " + img.width + " x " + img.height + " px";
-
-    // Calculate area usage (approx)
-    const maxArea = 500 * 300;
-    const imgArea = img.width * img.height;
-    const percent = Math.min((imgArea / maxArea) * 100, 100).toFixed(1);
-
-    document.getElementById("sizeDisplay").innerText =
-      "Ad occupies approx " + percent + "% of recommended space";
-
-  };
-
   const url = URL.createObjectURL(file);
-  img.src = url;
 
   // Show on bottle
   const preview = document.getElementById("adPreview");
   preview.src = url;
   preview.style.display = "block";
+
+  // Calculate size
+  const img = new Image();
+  img.onload = function() {
+    document.getElementById("info").innerText =
+      "Uploaded Image: " + img.width + " x " + img.height + " px";
+
+    const percent = Math.min((img.width * img.height) / (500 * 300) * 100, 100).toFixed(1);
+
+    document.getElementById("sizeDisplay").innerText =
+      "Ad occupies approx " + percent + "% of ideal print area";
+  };
+  img.src = url;
 });
 </script>
+
+</body>
+</html>
