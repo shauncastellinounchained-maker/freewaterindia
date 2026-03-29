@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Water for Everyone</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+header {
+  background: #0077b6;
+  color: white;
+  text-align: center;
+  padding: 50px;
+}
+
+section {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  color: #0077b6;
+}
+
+.card {
+  background: #f4f4f4;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+input, button {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+#preview {
+  margin-top: 15px;
+  max-width: 200px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>Free Water for Everyone</h1>
+  <p>Clean drinking water should be accessible to all</p>
+</header>
+
+<section>
+  <h2>The Problem</h2>
+  <p>People rely on bottled water due to lack of public access → leads to waste and cost.</p>
+</section>
+
+<section>
+  <h2>Solution</h2>
+  <p>Install free filtered water stations across cities.</p>
+</section>
+
+<section>
+  <h2>Ad Placement on Bottles (CLIENT FEATURE)</h2>
+  <p>Upload your advertisement to be printed on bottles.</p>
+
+  <label>Upload Ad Image:</label><br>
+  <input type="file" id="upload" accept="image/*"><br>
+
+  <p>Recommended Size: <b>500 x 300 pixels</b></p>
+
+  <img id="preview" src="" alt="Preview will appear here">
+
+</section>
+
+<section>
+  <h2>Impact</h2>
+  <div class="card">Reduce plastic waste</div>
+  <div class="card">Save money</div>
+  <div class="card">Improve public health</div>
+</section>
+
+<script>
+document.getElementById("upload").addEventListener("change", function(event) {
+  const file = event.target.files[0];
+  if (file) {
+    document.getElementById("preview").src = URL.createObjectURL(file);
+  }
+});
+</script>
+
+</body>
+</html>
