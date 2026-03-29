@@ -1,23 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Free Water Bottle Advertising</title>
+<title>Free Water via Ads</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
-  font-family: Arial;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f7fb;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: white;
   text-align: center;
-  background: #f5f7fa;
+  padding: 100px 20px;
 }
 
-h1 {
-  margin-top: 20px;
+.hero h1 {
+  font-size: 48px;
 }
 
-input {
-  margin: 15px;
+.hero p {
+  font-size: 18px;
+  opacity: 0.9;
 }
 
+/* SECTIONS */
+.section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.section h2 {
+  color: #0077b6;
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  width: 260px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0077b6;
+}
+
+/* BOTTLE */
 .cap {
   width: 90px;
   height: 40px;
@@ -27,14 +88,14 @@ input {
 }
 
 .bottle {
-  width: 220px;
-  height: 420px;
+  width: 230px;
+  height: 440px;
   background: white;
   border: 3px solid #0077b6;
   border-radius: 25px;
-  margin: 0 auto 30px;
+  margin: 0 auto;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
 .title {
@@ -43,12 +104,11 @@ input {
   width: 100%;
   font-weight: bold;
   color: #0077b6;
-  font-size: 18px;
 }
 
 .ad-slot {
-  width: 150px;
-  height: 80px;
+  width: 160px;
+  height: 85px;
   border: 2px dashed #bbb;
   position: absolute;
   left: 50%;
@@ -59,17 +119,42 @@ input {
   justify-content: center;
   font-size: 12px;
   color: #888;
-  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-#slot1 { top: 80px; }
-#slot2 { top: 190px; }
-#slot3 { top: 300px; }
+.ad-slot:hover {
+  border-color: #0077b6;
+  background: #eef7ff;
+}
+
+.selected {
+  border-color: #0077b6;
+  background: #dff3ff;
+}
+
+#slot1 { top: 90px; }
+#slot2 { top: 210px; }
+#slot3 { top: 330px; }
 
 .ad-slot img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* BUTTON */
+input {
+  padding: 10px;
+  margin: 20px;
+}
+
+/* FOOTER */
+.footer {
+  background: #023e8a;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
 </style>
 
@@ -77,40 +162,106 @@ input {
 
 <body>
 
-<h1>Free Water Bottle Advertising</h1>
+<div class="hero">
+  <h1>Free Water for Everyone</h1>
+  <p>Powered by Smart Advertising</p>
+</div>
 
-<p>Upload ads to place them on bottle slots</p>
+<div class="section">
+  <h2>The Problem</h2>
+  <div class="cards">
+    <div class="card">People pay for basic water</div>
+    <div class="card">Plastic waste rising</div>
+    <div class="card">Limited access</div>
+  </div>
+</div>
 
-<input type="file" id="upload" accept="image/*">
+<div class="section">
+  <h2>Our Solution</h2>
+  <p>Free water funded by advertisements printed on bottles.</p>
+</div>
 
-<div class="cap"></div>
+<div class="section">
+  <h2>Impact Metrics</h2>
+  <div class="stats">
+    <div class="stat" id="users">0</div>
+    <div class="stat" id="bottles">0</div>
+    <div class="stat" id="waste">0</div>
+  </div>
+</div>
 
-<div class="bottle">
-  <div class="title">FREE WATER</div>
+<div class="section">
+  <h2>Live Ad Placement</h2>
+  <p>Click a slot → upload ad</p>
 
-  <div class="ad-slot" id="slot1">Ad Space 1</div>
-  <div class="ad-slot" id="slot2">Ad Space 2</div>
-  <div class="ad-slot" id="slot3">Ad Space 3</div>
+  <input type="file" id="upload" accept="image/*">
+
+  <div class="cap"></div>
+
+  <div class="bottle">
+    <div class="title">FREE WATER</div>
+
+    <div class="ad-slot" id="slot1">₹500</div>
+    <div class="ad-slot" id="slot2">₹400</div>
+    <div class="ad-slot" id="slot3">₹300</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Impact</h2>
+  <div class="cards">
+    <div class="card">Reduce plastic waste</div>
+    <div class="card">Save money</div>
+    <div class="card">Sustainable model</div>
+  </div>
+</div>
+
+<div class="footer">
+  Design Thinking Project | Free Water Initiative
 </div>
 
 <script>
-let currentSlot = 1;
+let selectedSlot = null;
 
-document.getElementById("upload").addEventListener("change", function(event) {
-  const file = event.target.files[0];
+document.querySelectorAll(".ad-slot").forEach(slot => {
+  slot.addEventListener("click", () => {
+    document.querySelectorAll(".ad-slot").forEach(s => s.classList.remove("selected"));
+    slot.classList.add("selected");
+    selectedSlot = slot;
+  });
+});
+
+document.getElementById("upload").addEventListener("change", function(e) {
+  if (!selectedSlot) {
+    alert("Select a slot first!");
+    return;
+  }
+
+  const file = e.target.files[0];
   if (!file) return;
 
-  const slot = document.getElementById("slot" + currentSlot);
-  slot.innerHTML = "";
-
+  selectedSlot.innerHTML = "";
   const img = document.createElement("img");
   img.src = URL.createObjectURL(file);
-
-  slot.appendChild(img);
-
-  currentSlot++;
-  if (currentSlot > 3) currentSlot = 1;
+  selectedSlot.appendChild(img);
 });
+
+/* FAKE STATS ANIMATION */
+function animate(id, end) {
+  let i = 0;
+  let interval = setInterval(() => {
+    i += Math.ceil(end / 50);
+    if (i >= end) {
+      i = end;
+      clearInterval(interval);
+    }
+    document.getElementById(id).innerText = i;
+  }, 40);
+}
+
+animate("users", 1200);
+animate("bottles", 5000);
+animate("waste", 2000);
 </script>
 
 </body>
